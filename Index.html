@@ -15,7 +15,7 @@
 		function addMore(){
 			var max = 3;
 			if(counter == 1){
-				var deleteButton = document.createElement('div');
+				var deleteButton = document.createElement('button');
 				deleteButton.innerHTML = document.getElementById('hiddenButton').innerHTML;
 				deleteButton.setAttribute('id', 'deleteButton');
 				deleteButton.setAttribute('onclick','deleteBar()');
@@ -98,8 +98,6 @@
 		<input id="searchBar" type="text">
 	</div>
 
-	<div id="hiddenButton" style="display:none">
-	<button type="button">Delete the keyword</button>
-	</div>
+	<button type="button" id="hiddenButton" style="display:none">Delete the keyword</button>
 </body>
 </html>
