@@ -47,11 +47,34 @@
 			
 			var accLink = document.createElement('li');
 			accLink.setAttribute('class','nav-item');
+
+			var accForm = document.createElement('form');
+			accForm.setAttribute('id','accForm');
+			accForm.setAttribute('action','account.html');
+			accForm.setAttribute('method','GET');
+
+			var accValue = document.createElement('input');
+			accValue.setAttribute('name','status');
+			accValue.style.display="none";
+
+			if(sStat == true)
+				accValue.setAttribute('value','std');
+			else if(libStat == true)
+				accValue.setAttribute('value','lib');
+			else if(mainStat == true)
+				accValue.setAttribute('value','main');
+
+			accForm.appendChild(accValue);
+
 			var acc = document.createElement('a');
 			acc.setAttribute('class','nav-link');
-			acc.setAttribute('href','account.html');
-			acc.innerHTML=acc.innerHTML+"Account";
-			accLink.appendChild(acc);
+			acc.setAttribute('href','');
+			acc.setAttribute('onclick','accDir()');
+			acc.innerHTML=acc.innerHTML+"Account";		
+			accForm.appendChild(acc);
+
+			accLink.appendChild(accForm);
+
 			document.getElementById('menuList').appendChild(accLink);
 
 			document.getElementById("searchBar").innerHTML;
@@ -90,6 +113,10 @@
 					counter--;
 				}
 			}
+		}
+		
+		function accDir(){
+			document.getElementById("accForm").submit();
 		}
 	</script>
 </head>

@@ -39,6 +39,27 @@
 				</li>
 			</ul>
 		</div>  
-	</nav>  
+	</nav>
+
+	<script>
+		function checkLogin(){
+			var parameters = location.search.substring(1).split("&");
+			var temp = parameters[0].split("=");
+			var l = unescape(temp[1]);
+			if(l == "std"){
+				alert("std");
+			}
+			else if(l == "lib"){
+				alert("lib");
+
+			}
+			else if(l == "main"){
+				alert("main");
+
+			}
+		}
+		checkLogin();
+	</script>
+
 </body>
 </html>
