@@ -20,19 +20,29 @@
 			var ready = false;
 			try{
 				var inputName=document.getElementById("name").value;
-				if(inputName === "") throw "empty";
 				var inputEmail=document.getElementById("email").value;
-				if(inputEmail === "") throw "empty";
 				var inputPwd=document.getElementById("password").value;
-				if(inputPwd === "") throw "empty";
-				ready=true;
+
+				if(inputName === "")
+					throw "empty";
+				else if(inputEmail === "")
+					throw "empty";
+				else if(inputPwd === "")
+					throw "empty";
+				else{
+					ready=true;
+				}
 			}
 			catch(err){
+<<<<<<< HEAD
                 alert("Please fill in all information!");
+=======
+                		alert("Error: Please fill in all information!");
+>>>>>>> 3d43cf06169612a5ab60e16b8c639e72e0c46d8e
 			}
 
 			if(ready==true){
-				var answer = confirm("Complete?");
+				var answer = confirm("Comfirm?");
 				if(answer == true){
 					redir();
 				}
