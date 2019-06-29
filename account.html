@@ -47,15 +47,14 @@
 			var temp = parameters[0].split("=");
 			var l = unescape(temp[1]);
 			if(l == "std"){
-				alert("std");
+				location.replace("account-s.html");
 			}
 			else if(l == "lib"){
-				alert("lib");
+				location.replace("account-lib.html");
 
 			}
 			else if(l == "main"){
-				alert("main");
-
+				location.replace("account-main.html");
 			}
 		}
 		checkLogin();
