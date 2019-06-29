@@ -16,13 +16,6 @@
 
 		function addMore(){
 			var max = 3;
-			if(counter == 1){
-				var deleteButton = document.createElement('button');
-				deleteButton.innerHTML = document.getElementById('hiddenButton').innerHTML;
-				deleteButton.setAttribute('id', 'deleteButton');
-				deleteButton.setAttribute('onclick','deleteBar()');
-				document.getElementById('buttonGroup').appendChild(deleteButton);
-			}
 			if(counter < max){
 				counter++;
 				var searchDiv = document.createElement('div');
@@ -37,14 +30,12 @@
 
 		
 		function deleteBar(){
+			if(counter == 1){
+				alert("Reaching minium amount of keyword");
+			}
 			var remove = document.getElementById('extra'+counter);
 			remove.parentNode.removeChild(remove);			
 			counter--;
-
-			if(counter == 1){
-				var removeButton = document.getElementById('deleteButton');
-				removeButton.parentNode.removeChild(removeButton);
-			}
 		}
 		
 		function login(){
