@@ -9,8 +9,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="index.css">
-	<script>
+<script>
 		
+		var loginStatus = false;
 		var counter = 1;
 
 		function addMore(){
@@ -21,6 +22,7 @@
 				searchDiv.innerHTML = document.getElementById('hidden').innerHTML;
 				searchDiv.setAttribute('id', 'extra' + counter);
 				document.getElementById('search').appendChild(searchDiv);
+
 			}
 			else{
 				alert("Reaching maximum amount of keyword");
@@ -33,21 +35,68 @@
 				alert("Reaching minium amount of keyword");
 			}
 			var remove = document.getElementById('extra'+counter);
-			remove.parentNode.removeChild(remove);			
+			remove.parentNode.removeChild(remove);		
 			counter--;
+		}
+		
+		function login(){
+			loginStatus = true;
+			
+			var accLink = document.createElement('li');
+			accLink.setAttribute('class','nav-item');
+			var acc = document.createElement('a');
+			acc.setAttribute('class','nav-link');
+			acc.setAttribute('href','account.html');
+			acc.innerHTML=acc.innerHTML+"Account";
+			accLink.appendChild(acc);
+			document.getElementById('menuList').appendChild(accLink);
+
+			document.getElementById("searchBar").innerHTML;
+			document.getElementById("logLink").innerHTML="Sign Out";
+			document.getElementById("logLink").href="";
+			document.getElementById("logLink").setAttribute("onclick","logout()");
+		}
+
+		function logout(){
+			var c = confirm("Do you want to log out?");
+			if(c==true){
+				loginStatus = false;
+				location.replace("index.html")
+			}
+		}
+		
+		function checkHome(){
+			if(login == true){
+				document.getElementById("home").href="";
+			}
+			else{
+				document.getElementById("home").href="index.html";
+			}
+		}
+
+		function clearKey(){
+			document.getElementById('searchBar').value = '';
+			if(counter > 1){
+				var i;
+				for(i = counter; i > 1; i--){
+					var remove = document.getElementById('extra'+counter);
+					remove.parentNode.removeChild(remove);		
+					counter--;
+				}
+			}
 		}
 	</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="index.html">Home</a>
+		<a class="navbar-brand" href="" id="home" onclick="checkHome">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
+			<ul class="navbar-nav" id="menuList">
 				<li class="nav-item">
-					<a class="nav-link" href="login.html">Sign in</a>
+					<a class="nav-link" href="login.html" id="logLink">Sign in</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="help.html">Help</a>
@@ -64,7 +113,7 @@
 				<p class="text-center">Welcome come to UMBC Library</p>
 				<form style="text-align:center;">
 					<div id='search'>
-						<div class="form-group row" >
+						<div class="form-group row">
 							<div class="form-group col-md-2">
    								<select class="form-control">
      								<option>Title</option>
@@ -79,32 +128,41 @@
   						</div>
 					</div>
 					<button type="button" onclick="#" class="btn btn-dark">Search</button>
-					<button type="button" onclick="document.getElementById('searchBar').value = ''" class="btn btn-dark">Clear</button>
+					<button type="button" onclick="clearKey()" class="btn btn-dark">Clear</button>
 					<button type="button" onclick="addMore();" class="btn btn-dark" >Add more keyword</button>
 					<button type="button" onclick="deleteBar();" class="btn btn-dark">Delete the keyword</button>
+				</form>
 			</div>
-			</form>
-				<br>
-			</div>
+			<br>
 		</div>
-
-	
+	</div>
 	<div id="hidden" style="display:none">
 		<div id='search'>
 			<div class="form-group row" >
 				<div class="form-group col-md-2">
    					<select class="form-control">
-     					<option>Title</option>
+     						<option>Title</option>
 						<option>Author</option>
 						<option>Year</option>
 						<option>ISBN</option>
-    				</select>
+    					</select>
 				</div>
 				<div class="form-group col-md-10">
-    				<input type="text" id="searchBar" class="form-control" placeholder="Keywords">
-    			</div>
+    					<input type="text" id="searchBar" class="form-control" placeholder="Keywords">
+    				</div>
   			</div>
 		</div>
 	</div>
+
+	<script>
+		function checkLogin(){
+			var parameters = location.search.substring(1).split("&");
+			var temp = parameters[0].split("=");
+			var l = unescape(temp[1]);
+			if(l == "login")
+				login();
+		}
+		checkLogin();
+	</script>
 </body>
 </html>
