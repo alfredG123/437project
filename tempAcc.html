@@ -9,8 +9,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<link rel = "stylesheet" href = "cssFile.css">
 	<script src = "jsFile.js"> </script>
+	<link rel="stylesheet" href="tempAcc.css">
 	<script>
 		function redir(){
 			location.replace("index.html")
@@ -28,7 +28,7 @@
 				ready=true;
 			}
 			catch(err){
-                		alert("Please fill in all information!");
+                alert("Please fill in all information!");
 			}
 
 			if(ready==true){
@@ -60,24 +60,31 @@
 			</ul>
 		</div>  
 	</nav>
-	<div style="border-style:solid;border-width:2px;border-color:blac; margin:10px;padding:10px;">
-		<div class="container" style="text-align:center;">
-			<h2>Register</h2>
-			<form>
-				<div class="form-group">
-					<label for="name">Name:</label>
-					<input type="text" class="form-control" id="name">
-				</div>
-				<div class="form-group">
-					<label for="email">Email:</label>
-					<input type="text" class="form-control" id="email">
-				</div>
-				<div class="form-group">
-					<label for="password">Password:</label>
-					<input type="password" class="form-control" id="password">
-				</div>
-			</form>
-			<button type="button" onclick="check()"> Confirm </button>
+	<div style="height: 100vh">
+    	<div class="container h-100">
+        	<div class="jumbotron">
+        	<img src="UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+        	<h1 style="text-align:center;">Sign up</h1>
+            	<div class="form-group">
+					<label for="exampleInputEmail1">Email address</label>
+   					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    				<small class="form-text text-muted">Please use your school email, Thank you.</small>
+  				</div>
+ 				<div class="form-group">
+    				<label for="exampleInputPassword1">Password</label>
+    				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    				<small class="form-text text-muted">The minimum password length is 7. Your password must include an uppercase character, a lowercase character, a number, and a special character (!, @, #, etc.).</small>
+  				</div>
+  				<div class="form-group">
+    				<label for="exampleInputPassword1">Confirm password</label>
+    				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    				<small class="form-text text-muted">Check your password.</small>
+  				</div>		
+  				<p style="text-align:center;">
+  					Have an account? <a href="login.html">Log in</a>
+  				</p>
+				<button type="button" onclick="check()" class="btn btn-dark"> Confirm </button>
+			</div>
 		</div>
 	</div>
 </body>
