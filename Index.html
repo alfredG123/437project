@@ -13,6 +13,9 @@
 		
 		var loginStatus = false;
 		var counter = 1;
+		var sStat = false;
+		var libStat = false;
+		var mainStat = false;
 
 		function addMore(){
 			var max = 3;
@@ -61,6 +64,9 @@
 			var c = confirm("Do you want to log out?");
 			if(c==true){
 				loginStatus = false;
+				sStat = false;
+				libStat = false;
+				mainStat = false;
 				location.replace("index.html")
 			}
 		}
@@ -159,8 +165,20 @@
 			var parameters = location.search.substring(1).split("&");
 			var temp = parameters[0].split("=");
 			var l = unescape(temp[1]);
-			if(l == "login")
+			if(l == "std"){
+				sStat = true;
 				login();
+			}
+			else if(l == "lib"){
+				libStat = true;
+				login();
+
+			}
+			else if(l == "main"){
+				mainStat = true;
+				login();
+
+			}
 		}
 		checkLogin();
 	</script>
