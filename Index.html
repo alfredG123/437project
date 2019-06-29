@@ -34,12 +34,22 @@
 				alert("Reaching minium amount of keyword");
 			}
 			var remove = document.getElementById('extra'+counter);
-			remove.parentNode.removeChild(remove);			
+			remove.parentNode.removeChild(remove);		
 			counter--;
 		}
 		
 		function login(){
 			loginStatus = true;
+			
+			var accLink = document.createElement('li');
+			accLink.setAttribute('class','nav-item');
+			var acc = document.createElement('a');
+			acc.setAttribute('class','nav-link');
+			acc.setAttribute('href','account.html');
+			acc.innerHTML=acc.innerHTML+"Account";
+			accLink.appendChild(acc);
+			document.getElementById('menuList').appendChild(accLink);
+
 			document.getElementById("searchBar").innerHTML;
 			document.getElementById("logLink").innerHTML="Sign Out";
 			document.getElementById("logLink").href="";
@@ -71,7 +81,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
+			<ul id="menuList" class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" href="login.html" id="logLink">Sign In</a>
 				</li>
