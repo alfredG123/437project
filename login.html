@@ -32,8 +32,18 @@
 			}
 
 			if(empty == false){
-				if(inputEmail == "asd@abc.com" && inputPwd == "123")
+				if(inputEmail == "std@umbc.edu" && inputPwd == "123"){
+					document.getElementById('subButton').value = "std";
 					return true;
+				}
+				else if(inputEmail == "lib@umbc.edu" && inputPwd == "456"){
+					document.getElementById('subButton').value = "lib";
+					return true;
+				}
+				else if(inputEmail == "mtt@umbc.edu" && inputPwd == "789"){
+					document.getElementById('subButton').value = "main";
+					return true;
+				}
 				else{
 					empty = true;
 					alert("Error: The email is not mathcing to the password!");
@@ -85,7 +95,7 @@
  					<p style="text-align:center;">
   						No account? <a href="tempAcc.html">Get Temporary Access</a>
   					</p>
-					<button type="submit" name="confirm" value="login" class="btn btn-dark">Log in</button>
+					<button id="subButton" type="submit" name="confirm" class="btn btn-dark">Log in</button>
 				</form>
     			</div>
 		</div>
