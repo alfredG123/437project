@@ -11,10 +11,18 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<script>
 		
+		var loginStatus = false;
 		var counter = 1;
 
 		function addMore(){
 			var max = 3;
+			if(counter == 1){
+				var deleteButton = document.createElement('button');
+				deleteButton.innerHTML = document.getElementById('hiddenButton').innerHTML;
+				deleteButton.setAttribute('id', 'deleteButton');
+				deleteButton.setAttribute('onclick','deleteBar()');
+				document.getElementById('buttonGroup').appendChild(deleteButton);
+			}
 			if(counter < max){
 				counter++;
 				var searchDiv = document.createElement('div');
@@ -29,25 +37,52 @@
 
 		
 		function deleteBar(){
-			if(counter == 1){
-				alert("Reaching minium amount of keyword");
-			}
 			var remove = document.getElementById('extra'+counter);
 			remove.parentNode.removeChild(remove);			
 			counter--;
+
+			if(counter == 1){
+				var removeButton = document.getElementById('deleteButton');
+				removeButton.parentNode.removeChild(removeButton);
+			}
+		}
+		
+		function login(){
+			loginStatus = true;
+			document.getElementById("searchBar").innerHTML;
+			document.getElementById("logLink").innerHTML="logout";
+			document.getElementById("logLink").href="";
+			document.getElementById("logLink").setAttribute("onclick","logout()");
+		}
+
+		function logout(){
+			var c = confirm("Do you want to log out?");
+			if(c==true){
+				loginStatus = false;
+				location.replace("index.html")
+			}
+		}
+		
+		function checkHome(){
+			if(login == true){
+				document.getElementById("home").href="";
+			}
+			else{
+				document.getElementById("home").href="index.html";
+			}
 		}
 	</script>
 </head>
 <body style="background-color: #fdb515;">
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="index.html">Home</a>
+		<a class="navbar-brand" href="" id="home" onclick="checkHome">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="login.html">Sign in</a>
+					<a class="nav-link" href="login.html" id="logLink">Sign in</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="help.html">Help</a>
@@ -106,5 +141,16 @@
   			</div>
 		</div>
 	</div>
+
+	<script>
+		function checkLogin(){
+			var parameters = location.search.substring(1).split("&");
+			var temp = parameters[0].split("=");
+			var l = unescape(temp[1]);
+			if(l == "login")
+				login();
+		}
+		checkLogin();
+	</script>
 </body>
 </html>
