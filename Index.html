@@ -8,19 +8,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="index.css">
 	<script>
 		
 		var counter = 1;
 
 		function addMore(){
 			var max = 3;
-			if(counter == 1){
-				var deleteButton = document.createElement('button');
-				deleteButton.innerHTML = document.getElementById('hiddenButton').innerHTML;
-				deleteButton.setAttribute('id', 'deleteButton');
-				deleteButton.setAttribute('onclick','deleteBar()');
-				document.getElementById('buttonGroup').appendChild(deleteButton);
-			}
 			if(counter < max){
 				counter++;
 				var searchDiv = document.createElement('div');
@@ -35,18 +29,16 @@
 
 		
 		function deleteBar(){
+			if(counter == 1){
+				alert("Reaching minium amount of keyword");
+			}
 			var remove = document.getElementById('extra'+counter);
 			remove.parentNode.removeChild(remove);			
 			counter--;
-
-			if(counter == 1){
-				var removeButton = document.getElementById('deleteButton');
-				removeButton.parentNode.removeChild(removeButton);
-			}
 		}
 	</script>
 </head>
-<body>
+<body style="background-color: #fdb515;">
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="index.html">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -64,40 +56,55 @@
 		</div>  
 	</nav>
 
-	<div style="text-align:center;">
-		<img src="UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
-		<h1 style = "text-align:center;"> UMBC Library Catalog</h1>
-		<p>Welcome come to UMBC Library</p>
-		<form style="text-align:center;">
-		<div id='search'>
-			<div>
-			<select>
-				<option>Title</option>
-				<option>Author</option>
-				<option>Year</option>
-				<option>ISBN</option>
-			</select>
-			<input id="searchBar" type="text">
+	<div style="height: 100vh">
+    	<div class="container h-100">
+        	<div class="jumbotron">
+				<img src="UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+				<h1 style = "text-align:center;"> UMBC Library Catalog</h1>
+				<p class="text-center">Welcome come to UMBC Library</p>
+				<form style="text-align:center;">
+					<div id='search'>
+						<div class="form-group row" >
+							<div class="form-group col-md-2">
+   								<select class="form-control">
+     								<option>Title</option>
+									<option>Author</option>
+									<option>Year</option>
+									<option>ISBN</option>
+    							</select>
+							</div>
+							<div class="form-group col-md-10">
+    							<input type="text" id="searchBar" class="form-control" placeholder="Keywords">
+    						</div>
+  						</div>
+					</div>
+					<button type="button" onclick="#" class="btn btn-dark">Search</button>
+					<button type="button" onclick="document.getElementById('searchBar').value = ''" class="btn btn-dark">Clear</button>
+					<button type="button" onclick="addMore();" class="btn btn-dark" >Add more keyword</button>
+					<button type="button" onclick="deleteBar();" class="btn btn-dark">Delete the keyword</button>
+			</div>
+				</form>
+				<br>
 			</div>
 		</div>
-		</form>
-		<br>
-		<button type="button" onclick="#">Search</button>
-		<button type="button" onclick="document.getElementById('searchBar').value = ''">Clear</button>
-		<button type="button" onclick="addMore()">Add more keyword</button>
-		<div id="buttonGroup"></div>
 	</div>
-
+	
 	<div id="hidden" style="display:none">
-		<select>
-			<option>Title</option>
-			<option>Author</option>
-			<option>Year</option>
-			<option>ISBN</option>
-		</select>
-		<input id="searchBar" type="text">
+		<div id='search'>
+			<div class="form-group row" >
+				<div class="form-group col-md-2">
+   					<select class="form-control">
+     					<option>Title</option>
+						<option>Author</option>
+						<option>Year</option>
+						<option>ISBN</option>
+    				</select>
+				</div>
+				<div class="form-group col-md-10">
+    				<input type="text" id="searchBar" class="form-control" placeholder="Keywords">
+    			</div>
+  			</div>
+		</div>
 	</div>
-
-	<button type="button" id="hiddenButton" style="display:none">Delete the keyword</button>
 </body>
 </html>
