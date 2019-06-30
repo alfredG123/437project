@@ -21,11 +21,45 @@
 			var max = 3;
 			if(counter < max){
 				counter++;
-				var searchDiv = document.createElement('div');
-				searchDiv.innerHTML = document.getElementById('hidden').innerHTML;
-				searchDiv.setAttribute('id', 'extra' + counter);
-				document.getElementById('search').appendChild(searchDiv);
+				var newSearchBar = document.createElement('div');
+				newSearchBar.setAttribute('class', 'form-group row inputDiv');
+				document.getElementById('search').appendChild(newSearchBar);
+			
+				var newInnerBar = document.createElement('div');
+				newInnerBar.setAttribute('class', 'form-group col-md-2');
+				newSearchBar.appendChild(newInnerBar);
 
+				var newSelect = document.createElement('select');
+				newSelect.setAttribute('class', 'form-control typeSelect');
+				newSelect.setAttribute('name', 'type');
+				newInnerBar.appendChild(newSelect);
+
+				var newTitleSel = document.createElement('option');
+				newTitleSel.innerHTML = "Title";
+				newSelect.appendChild(newTitleSel);
+
+				var newAuthorSel = document.createElement('option');
+				newAuthorSel.innerHTML = "Author";
+				newSelect.appendChild(newAuthorSel);
+
+				var newYearSel = document.createElement('option');
+				newYearSel.innerHTML = "Year";
+				newSelect.appendChild(newYearSel);
+
+				var newISBNSel = document.createElement('option');
+				newISBNSel.innerHTML = "ISBN";
+				newSelect.appendChild(newISBNSel);
+
+				var newKeyDiv = document.createElement('div');
+				newKeyDiv.setAttribute('class', 'form-group col-md-10');
+				newSearchBar.appendChild(newKeyDiv);
+
+				var newKey = document.createElement('input');
+				newKey.setAttribute('type', 'text');
+				newKey.setAttribute('class', 'form-control searchBar');
+				newKey.setAttribute('placeholder', 'Keywords');
+				newKey.setAttribute('name', 'key');
+				newKeyDiv.appendChild(newKey);
 			}
 			else{
 				alert("Reaching maximum amount of keyword");
@@ -36,9 +70,10 @@
 		function deleteBar(){
 			if(counter == 1){
 				alert("Reaching minium amount of keyword");
+				return;
 			}
-			var remove = document.getElementById('extra'+counter);
-			remove.parentNode.removeChild(remove);		
+			var remove = document.getElementsByClassName('inputDiv');
+			remove[counter-1].parentNode.removeChild(remove[counter-1]);	
 			counter--;
 		}
 		
@@ -108,8 +143,8 @@
 			if(counter > 1){
 				var i;
 				for(i = counter; i > 1; i--){
-					var remove = document.getElementById('extra'+counter);
-					remove.parentNode.removeChild(remove);		
+					var remove = document.getElementsByClassName('inputDiv');
+					remove[counter-1].parentNode.removeChild(remove[counter-1]);	
 					counter--;
 				}
 			}
@@ -117,6 +152,21 @@
 		
 		function accDir(){
 			document.getElementById("accForm").submit();
+		}
+
+		function check(){
+			var x = document.getElementsByClassName('searchBar');
+			var i;
+
+			for(i = 0; i < counter; i++){
+				if(x[i].value==''){
+					alert("search bar cannot be empty!");
+					return false;
+				}
+			}
+			var num = document.getElementById('number');
+			num.setAttribute('value',counter);
+			return true;
 		}
 	</script>
 </head>
@@ -144,11 +194,12 @@
 				<img src="UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
 				<h1 style = "text-align:center;"> UMBC Library Catalog</h1>
 				<p class="text-center">Welcome come to UMBC Library</p>
-				<form style="text-align:center;">
+				<form style="text-align:center;" action="search.html" onsubmit="return check()" method="GET">
+					<input type="text" style="display:none;" name="num" id="number"></input>
 					<div id='search'>
-						<div class="form-group row">
+						<div class="form-group row  inputDiv">
 							<div class="form-group col-md-2">
-   								<select class="form-control">
+   								<select class="form-control typeSelect" name="type">
      									<option>Title</option>
 									<option>Author</option>
 									<option>Year</option>
@@ -156,34 +207,17 @@
     								</select>
 							</div>
 							<div class="form-group col-md-10">
-    								<input type="text" class="form-control searchBar" placeholder="Keywords">
+    								<input type="text" class="form-control searchBar" placeholder="Keywords" name="key">
     							</div>
   						</div>
 					</div>
-					<button type="button" onclick="#" class="btn btn-dark">Search</button>
+					<button type="sumbit" class="btn btn-dark">Search</button>
 					<button type="button" onclick="clearKey()" class="btn btn-dark">Clear</button>
 					<button type="button" onclick="addMore();" class="btn btn-dark" >Add more keyword</button>
 					<button type="button" onclick="deleteBar();" class="btn btn-dark">Delete the keyword</button>
 				</form>
 			</div>
 			<br>
-		</div>
-	</div>
-	<div id="hidden" style="display:none">
-		<div id='search'>
-			<div class="form-group row" >
-				<div class="form-group col-md-2">
-   					<select class="form-control">
-     						<option>Title</option>
-						<option>Author</option>
-						<option>Year</option>
-						<option>ISBN</option>
-    					</select>
-				</div>
-				<div class="form-group col-md-10">
-    					<input type="text" class="form-control searchBar" placeholder="Keywords">
-    				</div>
-  			</div>
 		</div>
 	</div>
 
