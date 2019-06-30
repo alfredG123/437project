@@ -18,9 +18,21 @@
 				if(c == true)
 					alert("System is down!");
 			}
+			
+			function logout(){
+			var c = confirm("Do you want to log out?");
+			if(c==true){
+				loginStatus = false;
+				sStat = false;
+				libStat = false;
+				mainStat = false;
+				location.replace("index.html");
+			}
+		}
 		</script>
 	</head>
 	<body>
+
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<form action="index.html" method="GET" id="mainForm">
 			<input style="display:none;" name="confirm" value="main"> </input>
@@ -29,7 +41,15 @@
    		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
    			<span class="navbar-toggler-icon"></span>
    		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav" id="menuList">
+				<li class="nav-item">
+					<a class="nav-link" href="" onclick="logout()">Sign Out</a>
+				</li>
+			</ul>
+		</div>  
 	</nav>
+
 	<div style="height: 100vh">
 		<div class="container h-100">
         	<div class="jumbotron">
