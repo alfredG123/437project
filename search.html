@@ -114,6 +114,8 @@
 			}
 
 			if(findBook1 == false && findBook2 == false && findBook3 == false){
+				var remove = document.getElementById('bar');
+				remove.parentNode.removeChild(remove);
 				var noFound = document.createElement('h1');
 				noFound.innerHTML = "sorry, there is no match book.";
 				document.getElementById('result').appendChild(noFound);
@@ -138,9 +140,13 @@
 	<div style="height: 100vh">
 		<div class="container h-100">
         	<div class="jumbotron">
+        		<img src="UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+        		<div style="text-align:center;">
+        			<h1>Results:</h1>
+        		</div>
         		<table class="table table-hover">
   				<thead>
-    				<tr>
+    				<tr id = "bar">
      				<th scope="col">Title</th>
      				<th scope="col">Author</th>
       				<th scope="col">Year</th>
