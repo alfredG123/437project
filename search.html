@@ -8,6 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="search.css">
 	<script>
 
 		var findBook1 = false;
@@ -35,38 +36,85 @@
 		function showBook(){
 
 			if(findBook1 == true){
-				var showBook1 = document.createElement('p');
-				var book1Link = document.createElement('a');
-				book1Link.setAttribute('href','book1.html');
-				book1Link.innerHTML = "book1";
-				showBook1.appendChild(book1Link);
-				showBook1.innerHTML = showBook1.innerHTML + ' ' + book1.author + ' ' + book1.year + ' ' + book1.ISBN;
-				document.getElementById('result').appendChild(showBook1);
+				var book1title = document.createElement('td');
+				book1title.innerHTML = book1title.innerHTML + book1.title;
+				document.getElementById('book1').appendChild(book1title);
+				
+				var book1author = document.createElement('td');
+				book1author.innerHTML = book1author.innerHTML + book1.author;
+				document.getElementById('book1').appendChild(book1author);
+				
+				var book1year = document.createElement('td');
+				book1year.innerHTML = book1year.innerHTML + book1.year;
+				document.getElementById('book1').appendChild(book1year);
+				
+				var book1ISBN = document.createElement('td');
+				book1ISBN.innerHTML = book1ISBN.innerHTML + book1.ISBN;
+				document.getElementById('book1').appendChild(book1ISBN);
+				
+				var book1Button = document.createElement("button");
+				book1Button.setAttribute('class',"btn btn-dark");
+				book1Button.innerHTML = "add to favourite";
+				var book1Buttontd = document.createElement("td");
+				book1Buttontd.appendChild(book1Button);
+				document.getElementById('book1').appendChild(book1Buttontd);
+				
 			}
-
-
 			if(findBook2 == true){
-				var showBook2 = document.createElement('p');
 				var book2Link = document.createElement('a');
 				book2Link.setAttribute('href','book2.html');
-				book2Link.innerHTML = "book2";
-				showBook2.appendChild(book2Link);
-				showBook2.innerHTML = showBook2.innerHTML + ' ' + book2.author + ' ' + book2.year + ' ' + book2.ISBN;
-				document.getElementById('result').appendChild(showBook2);
+				var book2title = document.createElement('td');
+				book2title.innerHTML = book2title.innerHTML + book2.title;
+				document.getElementById('book2').appendChild(book2title);
+				
+				var book2author = document.createElement('td');
+				book2author.innerHTML = book2author.innerHTML + book2.author;
+				document.getElementById('book2').appendChild(book2author);
+				
+				var book2year = document.createElement('td');
+				book2year.innerHTML = book2year.innerHTML + book2.year;
+				document.getElementById('book2').appendChild(book2year);
+				
+				var book2ISBN = document.createElement('td');
+				book2ISBN.innerHTML = book2ISBN.innerHTML + book2.ISBN;
+				document.getElementById('book2').appendChild(book2ISBN);
+				
+				var book2Button = document.createElement("button");
+				book2Button.setAttribute('class',"btn btn-dark");
+				book2Button.innerHTML = "add to favourite";
+				var book2Buttontd = document.createElement("td");
+				book2Buttontd.appendChild(book2Button);
+				document.getElementById('book2').appendChild(book2Buttontd);
+				
 			}
 
 			if(findBook3 == true){
-				var showBook3 = document.createElement('p');
-				var book3Link = document.createElement('a');
-				book3Link.setAttribute('href','book3.html');
-				book3Link.innerHTML = "book3";
-				showBook3.appendChild(book3Link);
-				showBook3.innerHTML = showBook3.innerHTML + ' ' + book3.author + ' ' + book3.year + ' ' + book3.ISBN;
-				document.getElementById('result').appendChild(showBook3);
+				var book3title = document.createElement('td');
+				book3title.innerHTML = book3title.innerHTML + book3.title;
+				document.getElementById('book3').appendChild(book3title);
+				
+				var book3author = document.createElement('td');
+				book3author.innerHTML = book3author.innerHTML + book3.author;
+				document.getElementById('book3').appendChild(book3author);
+				
+				var book3year = document.createElement('td');
+				book3year.innerHTML = book3year.innerHTML + book3.year;
+				document.getElementById('book3').appendChild(book3year);
+				
+				var book3ISBN = document.createElement('td');
+				book3ISBN.innerHTML = book3ISBN.innerHTML + book3.ISBN;
+				document.getElementById('book3').appendChild(book3ISBN);
+				
+				var book3Button = document.createElement("button");
+				book3Button.setAttribute('class',"btn btn-dark");
+				book3Button.innerHTML = "add to favourite";
+				var book3Buttontd = document.createElement("td");
+				book3Buttontd.appendChild(book3Button);
+				document.getElementById('book3').appendChild(book3Buttontd);
 			}
 
 			if(findBook1 == false && findBook2 == false && findBook3 == false){
-				var noFound = document.createElement('p');
+				var noFound = document.createElement('h1');
 				noFound.innerHTML = "sorry, there is no match book.";
 				document.getElementById('result').appendChild(noFound);
 			}
@@ -74,7 +122,50 @@
 	</script>
 </head>
 <body>
-	<div id="result"></div>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+   		<a class="navbar-brand" href="index.html">Home</a>
+   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+   			<span class="navbar-toggler-icon"></span>
+   		</button>
+   		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+   		<ul class="navbar-nav">
+   			<li class="nav-item">
+   				<a class="nav-link" href="help.html">Help</a>
+   			</li>
+   		</ul>
+   		</div>  
+	</nav>
+	<div style="height: 100vh">
+		<div class="container h-100">
+        	<div class="jumbotron">
+        		<table class="table table-hover">
+  				<thead>
+    				<tr>
+     				<th scope="col">Title</th>
+     				<th scope="col">Author</th>
+      				<th scope="col">Year</th>
+      				<th scope="col">ISBN</th>
+    				</tr>
+  				</thead>
+  				<tbody>
+    				<tr id="book1">
+    				</tr>
+    				<tr id="book2">
+    				</tr>
+    				<tr id="book3">
+    				</tr>
+  				</tbody>
+				</table>
+        		<div id="result">
+					
+				</div>
+    		</div>
+		</div>
+	</div>
+	<div id="result" style="text-align=center;">
+		
+		
+	</div>
 	<script>
 	function checkLogin(){
 		var parameters = location.search.substring(1).split("&");
