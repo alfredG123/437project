@@ -189,6 +189,10 @@
 
 			return true;
 		}
+
+		function toHelp(){
+			document.getElementById("helpForm").submit();
+		}
 	</script>
 </head>
 <body>
@@ -203,7 +207,10 @@
 					<a class="nav-link" href="login.html" id="logLink">Sign in</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="help.html">Help</a>
+					<form action="index.html" method="GET" id="helpForm">
+						<input style="display:none;" name="confirm"> </input>
+   						<a class="nav-link" href="help.html" onclick="toHelp()">Help</a>
+					</form>
 				</li>
 			</ul>
 		</div>  
