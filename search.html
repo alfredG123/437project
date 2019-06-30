@@ -51,9 +51,9 @@
 				var book1ISBN = document.createElement('td');
 				book1ISBN.innerHTML = book1ISBN.innerHTML + book1.ISBN;
 				document.getElementById('book1').appendChild(book1ISBN);
-				
 				var book1Button = document.createElement("button");
 				book1Button.setAttribute('class',"btn btn-dark");
+				book1Button.setAttribute('onclick',"JavaScript:alert('Adding to bookshelf is successful!')");
 				book1Button.innerHTML = "add to favourite";
 				var book1Buttontd = document.createElement("td");
 				book1Buttontd.appendChild(book1Button);
@@ -81,6 +81,7 @@
 				
 				var book2Button = document.createElement("button");
 				book2Button.setAttribute('class',"btn btn-dark");
+				book2Button.setAttribute('onclick',"JavaScript:alert('Adding to bookshelf is successful!')");
 				book2Button.innerHTML = "add to favourite";
 				var book2Buttontd = document.createElement("td");
 				book2Buttontd.appendChild(book2Button);
@@ -107,6 +108,7 @@
 				
 				var book3Button = document.createElement("button");
 				book3Button.setAttribute('class',"btn btn-dark");
+				book3Button.setAttribute('onclick',"JavaScript:alert('Adding to bookshelf is successful!')");
 				book3Button.innerHTML = "add to favourite";
 				var book3Buttontd = document.createElement("td");
 				book3Buttontd.appendChild(book3Button);
@@ -120,23 +122,114 @@
 				noFound.innerHTML = "sorry, there is no match book.";
 				document.getElementById('result').appendChild(noFound);
 			}
+
+		}
+
+		var loginStatus = false;
+		var sStat = false;
+		var libStat = false;
+		var mainStat = false;
+
+		function backIndex(){
+			if(loginStatus == true)
+				checkHome();
+			else{
+				location.replace("index.html");
+			}
+		}
+
+		function login(){
+			loginStatus = true;
+			
+			var accLink = document.createElement('li');
+			accLink.setAttribute('class','nav-item');
+
+			var accForm = document.createElement('form');
+			accForm.setAttribute('id','accForm');
+			accForm.setAttribute('action','account.html');
+			accForm.setAttribute('method','GET');
+
+			var accValue = document.createElement('input');
+			accValue.setAttribute('name','status');
+			accValue.style.display="none";
+
+			if(sStat == true)
+				accValue.setAttribute('value','std');
+			else if(libStat == true)
+				accValue.setAttribute('value','lib');
+			else if(mainStat == true)
+				accValue.setAttribute('value','main');
+
+			accForm.appendChild(accValue);
+
+			var acc = document.createElement('a');
+			acc.setAttribute('class','nav-link');
+			acc.setAttribute('href','');
+			acc.setAttribute('onclick','accDir()');
+			acc.innerHTML=acc.innerHTML+"Account";		
+			accForm.appendChild(acc);
+
+			accLink.appendChild(accForm);
+
+			document.getElementById('menuList').appendChild(accLink);
+
+			document.getElementById("logLink").innerHTML="Sign Out";
+			document.getElementById("logLink").href="";
+			document.getElementById("logLink").setAttribute("onclick","logout()");
+		}
+
+		function logout(){
+			var c = confirm("Do you want to sign out?");
+			if(c==true){
+				loginStatus = false;
+				sStat = false;
+				libStat = false;
+				mainStat = false;
+				location.replace("index.html");
+			}
+		}
+
+		function accDir(){
+			document.getElementById("accForm").submit();
+		}
+
+		function checkHome(){
+			if(loginStatus == true){
+				if(sStat == true)
+					document.getElementById("return").value = "std";
+				if(libStat == true)
+					document.getElementById("return").value = "lib";
+				if(mainStat == true)
+					document.getElementById("return").value = "main";
+				document.getElementById("mainForm").submit();
+			}
+			else{
+				document.getElementById("home").href="index.html";
+			}
 		}
 	</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-   		<a class="navbar-brand" href="index.html">Home</a>
+   		<form action="index.html" method="GET" id="mainForm">
+			<input style="display:none;" name="confirm" id="return"> </input>
+   			<a class="navbar-brand" href="index.html" onclick="checkHome()">Home</a>
+		</form>
    		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
    			<span class="navbar-toggler-icon"></span>
    		</button>
    		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-   		<ul class="navbar-nav">
+   		<ul class="navbar-nav" id="menuList">
+			<li class="nav-item">
+					<a class="nav-link" href="login.html" id="logLink">Sign in</a>
+				</li>
    			<li class="nav-item">
    				<a class="nav-link" href="help.html">Help</a>
    			</li>
    		</ul>
    		</div>  
 	</nav>
+
 	<div style="height: 100vh">
 		<div class="container h-100">
         	<div class="jumbotron">
@@ -162,9 +255,8 @@
     				</tr>
   				</tbody>
 				</table>
-        		<div id="result">
-					
-				</div>
+        		<div id="result"></div>
+<button class="btn btn-dark" onclick="backIndex()">Back</button>
     		</div>
 		</div>
 	</div>
@@ -173,14 +265,32 @@
 		
 	</div>
 	<script>
-	function checkLogin(){
+	function checkUrl(){
 		var parameters = location.search.substring(1).split("&");
-			var temp = parameters[0].split("=");
-			var num = unescape(temp[1]);
+			var numString = parameters[0].split("=");
+			var num = unescape(numString[1]);
 			var inputNum = num * 2;
-			var i;
 			
-			for(i = 1; i <= inputNum; i = i + 2){
+			var accString = parameters[1].split("=");
+			var acc = unescape(accString[1]);
+
+			if(acc == "std"){
+				sStat = true;
+				login();
+			}
+			else if(acc == "lib"){
+				libStat = true;
+				login();
+
+			}
+			else if(acc == "main"){
+				mainStat = true;
+				login();
+
+			}
+
+			var i;
+			for(i = 2; i <= inputNum; i = i + 2){
 				var temp1 = parameters[i].split("=");
 				var type = unescape(temp1[1]);
 				
@@ -222,7 +332,7 @@
 			}
 		}
 
-		checkLogin();
+		checkUrl();
 		showBook();
 
 	</script>
