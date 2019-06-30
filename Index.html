@@ -118,7 +118,7 @@
 		}
 
 		function logout(){
-			var c = confirm("Do you want to log out?");
+			var c = confirm("Do you want to sign out?");
 			if(c==true){
 				loginStatus = false;
 				sStat = false;
@@ -164,8 +164,29 @@
 					return false;
 				}
 			}
+
+
 			var num = document.getElementById('number');
 			num.setAttribute('value',counter);
+
+			if(loginStatus == true){
+				if(sStat == true){
+					var acc = document.getElementById('accStat');
+					acc.setAttribute('value',"std");
+				}
+				else if(libStat == true){
+					var acc = document.getElementById('accStat');
+					acc.setAttribute('value',"lib");
+				}
+				else if(mainStat == true){
+					var acc = document.getElementById('accStat');
+					acc.setAttribute('value',"main");
+				}
+			}else{
+				var acc = document.getElementById('accStat');
+				acc.setAttribute('value',"none");
+			}
+
 			return true;
 		}
 	</script>
@@ -196,6 +217,7 @@
 				<p class="text-center">Welcome come to UMBC Library</p>
 				<form style="text-align:center;" action="search.html" onsubmit="return check()" method="GET">
 					<input type="text" style="display:none;" name="num" id="number"></input>
+					<input type="text" style="display:none;" name="acc" id="accStat"></input>
 					<div id='search'>
 						<div class="form-group row  inputDiv">
 							<div class="form-group col-md-2">
