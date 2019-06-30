@@ -1,0 +1,18 @@
+html body{
+	background-color: #fdb515;
+}
+
+
+.jumbotron {
+    
+
+	display: flex;
+  	flex-direction: column;
+  	
+}
+.blocks .btn-primary 
+{
+    padding: 24px 12px;
+    margin: 0 5px;  
+    border-radius: 0;
+}
