@@ -73,9 +73,7 @@
 
 		function checkHome(){
 			if(loginStatus == true){
-				if(sStat == true)
-					document.getElementById("return").value = "std";
-
+				document.getElementById("return").value = "std";
 				document.getElementById("mainForm").submit();
 			}
 			else{
@@ -114,8 +112,28 @@
    				<a class="nav-link" href="">Help</a>
    			</li>
    		</ul>
-   		</div>  
-    </nav>
+   		</div> 
+   </nav>
+	<script>
+	function checkUrl(){
+		var parameters = location.search.substring(1).split("&");
+			
+			var accString = parameters[0].split("=");
+			var acc = unescape(accString[1]);
+
+			if(acc == "std"){
+				sStat = true;
+				login();
+			}
+			else if(acc == "lib"){
+				location.replace("inbox.html");
+			}
+		}
+
+		checkUrl();
+
+	</script>
+
 	<div style="height: 100vh">
     	<div class="container h-100">
         	<div class="jumbotron">
@@ -167,24 +185,5 @@
     	</div>
     </div>
 
-	<script>
-	function checkUrl(){
-		var parameters = location.search.substring(1).split("&");
-			
-			var accString = parameters[0].split("=");
-			var acc = unescape(accString[1]);
-
-			if(acc == "std"){
-				sStat = true;
-				login();
-			}
-			else if(acc == "lib"){
-				location.replace("inbox.html");
-			}
-		}
-
-		checkUrl();
-
-	</script>
 </body>
 </html>
