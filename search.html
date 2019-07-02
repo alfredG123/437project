@@ -207,6 +207,20 @@
 				document.getElementById("home").href="index.html";
 			}
 		}
+
+		function toHelp(){
+			if(loginStatus == false){
+				document.getElementById('homeId').value = "none";
+			}else{
+				if(sStat == true)
+					document.getElementById('homeId').value = "std";
+				if(libStat == true)
+					document.getElementById('homeId').value = "lib";
+			}
+
+			document.getElementById("helpForm").submit();
+		}
+
 	</script>
 </head>
 <body>
@@ -223,9 +237,12 @@
 			<li class="nav-item">
 					<a class="nav-link" href="login.html" id="logLink">Sign in</a>
 				</li>
-   			<li class="nav-item">
-   				<a class="nav-link" href="help.html">Help</a>
-   			</li>
+   			<li class="nav-item" id="helpLi">
+					<form action="help.html" method="GET" id="helpForm">
+						<input style="display:none;" name="confirm" id ="homeId"> </input>
+   						<a class="nav-link" href="help.html" onclick="toHelp()">Help</a>
+					</form>
+				</li>
    		</ul>
    		</div>  
 	</nav>

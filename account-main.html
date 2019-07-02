@@ -9,10 +9,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script>
-			function returnHome(){
-				document.getElementById("mainForm").submit();
-			}
-			
 			function confirmChoice(){
 				c = confirm("Confirm to shutdown the system?")
 				if(c == true)
@@ -20,23 +16,18 @@
 			}
 			
 			function logout(){
-			var c = confirm("Do you want to log out?");
-			if(c==true){
-				loginStatus = false;
-				sStat = false;
-				libStat = false;
-				mainStat = false;
-				location.replace("index.html");
+				var c = confirm("Do you want to log out?");
+				if(c==true){
+					location.replace("index.html");
+				}
 			}
-		}
 		</script>
 	</head>
 	<body>
 
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<form action="index.html" method="GET" id="mainForm">
-			<input style="display:none;" name="confirm" value="main"> </input>
-   			<a class="navbar-brand" href="index.html" onclick="returnHome()">Home</a>
+			<img src="UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
 		</form>
    		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
    			<span class="navbar-toggler-icon"></span>

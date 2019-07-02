@@ -99,6 +99,12 @@
 			else if(mainStat == true)
 				accValue.setAttribute('value','main');
 
+
+			if(mainStat == true){
+				var removeHelp = document.getElementById("helpLi");
+				removeHelp.parentNode.removeChild(removeHelp);	
+			}
+
 			accForm.appendChild(accValue);
 
 			var acc = document.createElement('a');
@@ -125,15 +131,6 @@
 				libStat = false;
 				mainStat = false;
 				location.replace("index.html");
-			}
-		}
-		
-		function checkHome(){
-			if(login == true){
-				document.getElementById("home").href="";
-			}
-			else{
-				document.getElementById("home").href="index.html";
 			}
 		}
 
@@ -189,11 +186,26 @@
 
 			return true;
 		}
+
+		function toHelp(){
+			if(loginStatus == false){
+				document.getElementById('homeId').value = "none";
+			}else{
+				if(sStat == true)
+					document.getElementById('homeId').value = "std";
+				if(libStat == true)
+					document.getElementById('homeId').value = "lib";
+				if(mainStat == true)
+					document.getElementById('homeId').value = "main";
+			}
+
+			document.getElementById("helpForm").submit();
+		}
 	</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="" id="home" onclick="checkHome">Home</a>
+		<a class="navbar-brand" href="" id="home">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -202,8 +214,11 @@
 				<li class="nav-item">
 					<a class="nav-link" href="login.html" id="logLink">Sign in</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="help.html">Help</a>
+				<li class="nav-item" id="helpLi">
+					<form action="help.html" method="GET" id="helpForm">
+						<input style="display:none;" name="confirm" id ="homeId"> </input>
+   						<a class="nav-link" href="help.html" onclick="toHelp()">Help</a>
+					</form>
 				</li>
 			</ul>
 		</div>  

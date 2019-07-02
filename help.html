@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-   	<head>
+<head>
    	 <title>Help</title>
    	 <meta charset="utf-8">
    	 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,24 +9,131 @@
    	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
    	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
    	 <link rel="stylesheet" type="text/css" href="help.css">
-    </head>
+
+	<script>
+		var loginStatus = false;
+		var sStat = false;
+
+		function backIndex(){
+			if(loginStatus == true)
+				checkHome();
+			else{
+				location.replace("index.html");
+			}
+		}
+
+		function login(){
+			loginStatus = true;
+			
+			var accLink = document.createElement('li');
+			accLink.setAttribute('class','nav-item');
+
+			var accForm = document.createElement('form');
+			accForm.setAttribute('id','accForm');
+			accForm.setAttribute('action','account.html');
+			accForm.setAttribute('method','GET');
+
+			var accValue = document.createElement('input');
+			accValue.setAttribute('name','status');
+			accValue.style.display="none";
+
+			if(sStat == true)
+				accValue.setAttribute('value','std');
+
+			accForm.appendChild(accValue);
+
+			var acc = document.createElement('a');
+			acc.setAttribute('class','nav-link');
+			acc.setAttribute('href','');
+			acc.setAttribute('onclick','accDir()');
+			acc.innerHTML=acc.innerHTML+"Account";		
+			accForm.appendChild(acc);
+
+			accLink.appendChild(accForm);
+
+			document.getElementById('menuList').appendChild(accLink);
+
+			document.getElementById("logLink").innerHTML="Sign Out";
+			document.getElementById("logLink").href="";
+			document.getElementById("logLink").setAttribute("onclick","logout()");
+		}
+
+		function logout(){
+			var c = confirm("Do you want to sign out?");
+			if(c==true){
+				loginStatus = false;
+				sStat = false;
+				location.replace("index.html");
+			}
+		}
+
+		function accDir(){
+			document.getElementById("accForm").submit();
+		}
+
+		function checkHome(){
+			if(loginStatus == true){
+				document.getElementById("return").value = "std";
+				document.getElementById("mainForm").submit();
+			}
+			else{
+				document.getElementById("home").href="index.html";
+			}
+		}
+
+		function subTicket(){
+			if(loginStatus == false){
+				alert("Error: Please sign in!");
+				return false;
+			}else{
+				if(sStat == true)
+					document.getElementById("sub").value = "std";
+
+				return true;
+			}
+		}
+	</script>
+</head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-   		<a class="navbar-brand" href="index.html">Home</a>
+   		<form action="index.html" method="GET" id="mainForm">
+			<input style="display:none;" name="confirm" id="return"> </input>
+   			<a class="navbar-brand" href="index.html" onclick="checkHome()">Home</a>
+		</form>
    		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
    			<span class="navbar-toggler-icon"></span>
    		</button>
    		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-   		<ul class="navbar-nav">
+   		<ul class="navbar-nav" id="menuList">
    			<li class="nav-item">
-   				<a class="nav-link" href="help.html">Log in</a>
+   				<a class="nav-link" href="login.html" id="logLink">Sign in</a>
    			</li>
    			<li class="nav-item">
-   				<a class="nav-link" href="help.html">Help</a>
+   				<a class="nav-link" href="">Help</a>
    			</li>
    		</ul>
-   		</div>  
-    </nav>
+   		</div> 
+   </nav>
+	<script>
+	function checkUrl(){
+		var parameters = location.search.substring(1).split("&");
+			
+			var accString = parameters[0].split("=");
+			var acc = unescape(accString[1]);
+
+			if(acc == "std"){
+				sStat = true;
+				login();
+			}
+			else if(acc == "lib"){
+				location.replace("inbox.html");
+			}
+		}
+
+		checkUrl();
+
+	</script>
+
 	<div style="height: 100vh">
     	<div class="container h-100">
         	<div class="jumbotron">
@@ -59,21 +166,24 @@
         				<h5>Answer:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</h5>
             		</div>
             		<hr color= gray>
-            		<h3>If you are students and have other questions, please log in and press Submit button to submit a ticket to our librarian.</h3>
-            		<button type="button" class="btn btn-dark">Submit</button>
-            		<h3>If you are librarian and want to check all tickets, please log in and press Check button</h3>
-            		<button type="button" class="btn btn-dark">Check</button>
+            		<h3>If you have any other questions, please submit a ticket to our librarian..</h3>
+			<h5><font color="red">*Please log in and press Submit button to submit.</font></h5>
+			
+			<form action="ticket.html" method="GET" id="mainForm" onsubmit="return subTicket()">
+	   			<button type="submit" class="btn btn-dark" name="confirm" id="sub">Submit</button>
+			</form>
+
             		<hr color= gray>
-            		<h3>Contact information:</h3>
-            		<div class="col-md-3 offset-md-1">
-            			<h5>XXXXX Phone number: 4434434458</h5>
-            			<h5>XXXXX Phone number: 4434434458</h5>
-            			<h5>XXXXX Phone number: 4434434458</h5>
-            			<h5>XXXXX Phone number: 4434434458</h5>
+            		<h3>Circulation Contact Information:</h3>
+            		<div class="col-md-6 offset-md-1">
+            			<h5>Phone number: 1234567891</h5>
+				<h5>email: libraryCirc456@umbc.edu</h5>
+				<h5>Circulation is located at the entrance of the library.</h5>
             		</div>
             	</div>
     		</div>
     	</div>
     </div>
+
 </body>
 </html>

@@ -11,20 +11,73 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src = "jsFile.js"> </script>
 	<link rel="stylesheet" href="ticket.css">
+	<script>
+		function checkHome(){
+			document.getElementById("return").value = "std";
+			document.getElementById("mainForm").submit();
+		}
+	
+		function logout(){
+				var c = confirm("Do you want to log out?");
+				if(c==true){
+					location.replace("index.html");
+				}
+		}
+
+		function toHelp(){
+			document.getElementById('homeId').value = "std";
+			document.getElementById("helpForm").submit();
+		}
+
+		function goBack(){
+			window.history.back();
+		}
+
+		function check(){
+			var email = document.getElementById("email").value;
+			var subject = document.getElementById("subject").value;
+			var comment = document.getElementById("comment").value;
+
+			var fill = false;
+
+			if(email != '' && subject != '' & comment != '')
+				fill = true;
+
+			if(fill == false)
+				alert("Error: Please fill in all required information.");
+			
+			if(fill == true){
+				var c = confirm("Are you confirm to submit the ticket?");
+				if(c == true){
+					alert("Your ticket is submitted.");
+					window.history.back();
+				}
+				else{
+					fill = false;
+				}
+			}
+		}
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="index.html">Home</a>
+		<form action="index.html" method="GET" id="mainForm">
+			<input style="display:none;" name="confirm" id="return"> </input>
+   			<a class="navbar-brand" href="index.html" onclick="checkHome()">Home</a>
+		</form>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="login.html">Sign out</a>
+					<a class="nav-link" href="" onclick="logout()">Sign Out</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="help.html">Help</a>
+				<li class="nav-item" id="helpLi">
+					<form action="help.html" method="GET" id="helpForm">
+						<input style="display:none;" name="confirm" id ="homeId"> </input>
+   						<a class="nav-link" href="help.html" onclick="toHelp()">Help</a>
+					</form>
 				</li>
 			</ul>
 		</div>  
@@ -35,37 +88,37 @@
         	<img src="UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
         	<h1 style="text-align:center;">Ticket</h1>
             	<div class="form-group">
-					<label for="exampleInputEmail1">Email address <font color="red"> *</font></label>
-   					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+			<label for="email">Email address <font color="red"> *</font></label>
+   			<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
     				<small class="form-text text-muted">Please use your Commonly used E-mail</small>
   				</div>
  				<div class="form-group">
-    				<label for="exampleInputPassword1">Subject <font color="red"> *</font></label>
-    				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    				<label for="subject">Subject<font color="red"> *</font></label>
+    				<input type="text" class="form-control" id="subject" placeholder="Enter subject">
   				</div>
   				<div class="form-group">
-    				<label for="exampleInputPassword1">Category <font color="red"> *</font></label>
+    				<label>Category <font color="red"> *</font></label>
     				<select class="form-control">
-     						<option>Title</option>
-							<option>Author</option>
-							<option>Year</option>
-							<option>other</option>
+     						<option>Book Issue</option>
+						<option>Technical Difficulty</option>
+						<option>Bill</option>
+						<option>Other</option>
     				</select>
   				</div>
   				<div class="form-group">
-    				<label for="exampleInputPassword1">Description <font color="red"> *</font></label>
+    				<label>Description <font color="red"> *</font></label>
     				 <textarea class="form-control" rows="5" id="comment"></textarea>
   				</div>
   				<div class="form-group">
-    				<label for="exampleInputPassword1">Attachments</label>
+    				<label>Attachments</label>
     				<form>
- 						<div class="custom-file">
-  						 	<input type="file" class="custom-file-input" id="customFile">
-    						<label class="custom-file-label" for="customFile">Choose file</label>
-  						</div>
-					</form>
-  				</div>		
-				<button type="button" onclick="check()" class="btn btn-dark"> Submit </button>
+ 					<div class="custom-file">
+  					 	Select files: <input type="file" name="myFile" multiple>
+  					</div>
+				</form>
+				<p style="color:red;">* - the space is required to fill in.</p>
+				<button type="button" onclick="check()" class="btn btn-dark btn-block"> Submit </button>
+				<button type="button" onclick="goBack()" class="btn btn-dark btn-block"> Back </button>
 			</div>
 		</div>
 	</div>
