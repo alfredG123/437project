@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>UMBC Library Catalog</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<link rel = "stylesheet" href = "cssFiles/page.css">
+	<script src = "jsFiles/login.js"> </script>
+
+	<script>
+		var ssStatus = false;
+		var libStatus = false;
+		var mtStatus = false;
+		var isLoggedIn = false;
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<form action="index.html" method="GET" id="loginForm">
+			<input type="text" class="hidden" name="isLogin"></input>
+			<a class="navbar-brand" href="" onClick="goHome()">Home</a>
+		</form>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav" id="menuList">
+				<li class="nav-item">
+					<a class="nav-link" href="loginPage/login.html" id="loginLink">Sign in</a>
+				</li>
+				<li class="nav-item">
+   					<a class="nav-link" href="helpPage/help.html">Help</a>
+				</li>
+			</ul>
+		</div>  
+	</nav>
+
+	<div style="height: 100vh">
+    		<div class="container h-100">
+        		<div class="jumbotron">
+				<img src="pictures/UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+				<h1 class="text-center"> UMBC Library Catalog</h1>
+				<p class="text-center">Welcome come to UMBC Library</p>
+				<form class="text-center" action="search.html">
+					<input type="text" class="hidden"></input>
+					<input type="text" class="hidden"></input>
+					<div>
+						<div class="form-group row">
+							<div class="form-group col-md-2">
+   								<select class="form-control typeSelect">
+     									<option>Title</option>
+									<option>Author</option>
+									<option>Year</option>
+									<option>ISBN</option>
+    								</select>
+							</div>
+							<div class="form-group col-md-10">
+    								<input type="text" class="form-control" placeholder="Keywords">
+    							</div>
+  						</div>
+					</div>
+					<button type="sumbit" class="btn btn-dark">Search</button>
+					<button type="button" class="btn btn-dark">Clear</button>
+					<button type="button" class="btn btn-dark" >Add more keyword</button>
+					<button type="button" class="btn btn-dark">Delete the keyword</button>
+				</form>
+			</div>
+			<br>
+		</div>
+	</div>
+
+	<script>
+		checkLogin();
+	</script>
+</body>
+</html>

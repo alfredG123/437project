@@ -1,0 +1,8 @@
+Group Members: Zhenbang Weng and Kecheng Tao
+
+Accounts that are used for login:
+staff and student - ss@abc.com 123
+librarian - lib@abc.com 456
+maintainer - mt@abc.com 789
+
+Since this program a is prototype, so it does not save data.
