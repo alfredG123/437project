@@ -25,33 +25,17 @@ function login(){
 	accLink.setAttribute('class','nav-item');
 	document.getElementById('menuList').appendChild(accLink);
 
-	var accForm = document.createElement('form');
-	accForm.setAttribute('id','accForm');
-	accForm.setAttribute('action','accountPage/account.html');
-	accForm.setAttribute('method','GET');	
-	accLink.appendChild(accForm);
-			
-
-	var accValue = document.createElement('input');
-	accValue.setAttribute('name','status');
-	accValue.style.display="none";
-
-	if(ssStatus == true)
-		accValue.setAttribute('value','std');
-	else if(libStatus == true)
-		accValue.setAttribute('value','lib');
-	else if(mtStatus == true)
-		accValue.setAttribute('value','main');
-
-	accForm.appendChild(accValue);
-
 	var acc = document.createElement('a');
 	acc.setAttribute('class','nav-link');
-	acc.setAttribute('href','');
-	acc.setAttribute('onclick','accDir()');
 	acc.innerHTML=acc.innerHTML+"Account";		
-	accForm.appendChild(acc);
+	accLink.appendChild(acc);
 
+	if(ssStatus == true)
+		acc.setAttribute('href','accountPage/account.html?status=ss');
+	else if(libStatus == true)
+		acc.setAttribute('href','accountPage/account.html?status=lib');
+	else if(mtStatus == true)
+		acc.setAttribute('href','accountPage/account.html?status=mt');
 
 	document.getElementById("loginLink").innerHTML="Sign Out";
 	document.getElementById("loginLink").href="";
@@ -59,19 +43,20 @@ function login(){
 }
 
 function goHome(){
+	var homeLink = document.getElementById("isLogin");
+
 	if(isLoggedIn == true){
-		if(ssStatus = true){
-			document.getElementById("isLogin").value = "ss";
+		if(ssStatus == true){
+			homeLink.setAttribute('href','index.html?status=ss');
 		}
-		else if(libStatus = true){
-			document.getElementById("isLogin").value = "lib";
+		else if(libStatus == true){
+			homeLink.setAttribute('href','index.html?status=lib');
 		}
-		else if(mtStatus = true){
-			document.getElementById("isLogin").value = "mt";
+		else if(mtStatus == true){
+			homeLink.setAttribute('href','index.html?status=mt');
 		}
-		document.getElementById("loginForm").submit();
 	}else{
-		location.replace(index.html)
+		homeLink.setAttribute('href','index.html');
 	}
 }
 
@@ -81,11 +66,9 @@ function accDir(){
 
 function logout(){
 	var c = confirm("Do you want to sign out?");
+
 	if(c==true){
-		isLoggedIn = false;
-		ssStatus = false;
-		libStatus = false;
-		mtStatus = false;
-		window.location.replace("index.html");
+		var logLink = document.getElementById("loginLink");
+		logLink.href="index.html";
 	}
 }
