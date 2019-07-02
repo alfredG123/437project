@@ -41,34 +41,3 @@ function login(){
 	document.getElementById("loginLink").href="";
 	document.getElementById("loginLink").setAttribute("onclick","logout()");
 }
-
-function goHome(){
-	var homeLink = document.getElementById("isLogin");
-
-	if(isLoggedIn == true){
-		if(ssStatus == true){
-			homeLink.setAttribute('href','index.html?status=ss');
-		}
-		else if(libStatus == true){
-			homeLink.setAttribute('href','index.html?status=lib');
-		}
-		else if(mtStatus == true){
-			homeLink.setAttribute('href','index.html?status=mt');
-		}
-	}else{
-		homeLink.setAttribute('href','index.html');
-	}
-}
-
-function accDir(){
-	document.getElementById("accForm").submit();
-}
-
-function logout(){
-	var c = confirm("Do you want to sign out?");
-
-	if(c==true){
-		var logLink = document.getElementById("loginLink");
-		logLink.href="index.html";
-	}
-}

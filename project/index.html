@@ -12,12 +12,14 @@
 
 	<link rel = "stylesheet" href = "cssFiles/page.css">
 	<script src = "jsFiles/login.js"> </script>
-
+	<script src = "jsFiles/button.js"> </script>
+	
 	<script>
 		var ssStatus = false;
 		var libStatus = false;
 		var mtStatus = false;
 		var isLoggedIn = false;
+		var counter = 1;
 	</script>
 </head>
 <body>
@@ -32,7 +34,7 @@
 					<a class="nav-link" href="loginPage/login.html" id="loginLink">Sign in</a>
 				</li>
 				<li class="nav-item">
-   					<a class="nav-link" href="helpPage/help.html">Help</a>
+   					<a class="nav-link" href="" onclick="goHelp()" id="helpLink">Help</a>
 				</li>
 			</ul>
 		</div>  
@@ -44,13 +46,13 @@
 				<img src="pictures/UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
 				<h1 class="text-center"> UMBC Library Catalog</h1>
 				<p class="text-center">Welcome come to UMBC Library</p>
-				<form class="text-center" action="search.html">
-					<input type="text" class="hidden"></input>
-					<input type="text" class="hidden"></input>
-					<div>
-						<div class="form-group row">
+				<form class="text-center" action="searchPage/search.html" onsubmit="return check()"  method="GET">
+					<input type="text" class="hidden" name="num" id="number"></input>
+					<input type="text" class="hidden" name="acc" id="accStat"></input>
+					<div id="search">
+						<div class="form-group row inputDiv">
 							<div class="form-group col-md-2">
-   								<select class="form-control typeSelect">
+   								<select class="form-control typeSelect" name="type">
      									<option>Title</option>
 									<option>Author</option>
 									<option>Year</option>
@@ -58,14 +60,14 @@
     								</select>
 							</div>
 							<div class="form-group col-md-10">
-    								<input type="text" class="form-control" placeholder="Keywords">
+    								<input type="text" class="form-control searchBar" placeholder="Keywords" name="key">
     							</div>
   						</div>
 					</div>
 					<button type="sumbit" class="btn btn-dark">Search</button>
-					<button type="button" class="btn btn-dark">Clear</button>
-					<button type="button" class="btn btn-dark" >Add more keyword</button>
-					<button type="button" class="btn btn-dark">Delete the keyword</button>
+					<button type="button" class="btn btn-dark" onclick="clearKey()">Clear</button>
+					<button type="button" class="btn btn-dark" onclick="addMore()">Add more keyword</button>
+					<button type="button" class="btn btn-dark" onclick="deleteBar()">Delete the keyword</button>
 				</form>
 			</div>
 			<br>
