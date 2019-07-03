@@ -1,9 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>BookThree</title>
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<link rel = "stylesheet" href = "../cssFiles/page.css">
+	<script src = "../jsFiles/login.js"> </script>
+	<script src = "../jsFiles/button.js"> </script>
+	<script src = "../jsFiles/search.js"> </script>
+	<script>
+		var isLoggedIn = false;
+		var ssStatus = false;
+		var libStatus = false;
+	</script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="" onclick="goHome()" id="homeButton">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav" id="menuList">
+				<li class="nav-item">
+					<a class="nav-link" href="../loginPage/login.html" id="loginLink">Sign in</a>
+				</li>
+				<li class="nav-item">
+   					<a class="nav-link" href="" onclick="otherToHelp()" id="helpLink">Help</a>
+				</li>
+			</ul>
+		</div>  
+	</nav>
+	
+	<div style="height: 100vh">
+		<div class="container h-100">
+        		<div class="jumbotron" id="bookDetail">
+        			<img src="../pictures/UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+        			<div>
+        				<h1 class="text-center">Book3</h1>
+					<div class="form-group">
+						<label>Title: book3</label>
+					</div>
+					<div class="form-group">
+						<img src="../pictures/book3.png" alt="book3 picture" style="width:75px;height:100px;">
+					</div>
+					<div class="form-group">
+						<label>Author: author3</label>
+					</div>
+					<div class="form-group">
+						<label>Year: 1993</label>
+					</div>
+					<div class="form-group">
+						<label>ISBN: 222-1-44-888888-9</label>
+					</div>
+					<div class="form-group">
+						<label>Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</label>
+					</div>
+					<div class="form-group">
+						<label>Availability: Not Available</label>
+					</div>
+        			</div>
+    			</div>
+		</div>
+	</div>
 
+	<script>
+		checkLogin();
+		searchLogin();
+		bookAddButton();
+	</script>
 </body>
 </html>

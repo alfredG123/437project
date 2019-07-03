@@ -1,9 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Search</title>
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<link rel = "stylesheet" href = "../cssFiles/page.css">
+	<script src = "../jsFiles/login.js"> </script>
+	<script src = "../jsFiles/button.js"> </script>
+	<script src = "../jsFiles/search.js"> </script>
+	<script>
+		var isLoggedIn = false;
+		var ssStatus = false;
+		var libStatus = false;
+		var mtStatus = false;
+
+		var findBook1 = false;
+		var findBook2 = false;
+		var findBook3 = false;
+
+		var book1={
+			title: "book1",
+			author: "author1",
+			year:"1991",
+			ISBN:"111-2-33-444444-5",
+		};
+		var book2={
+			title: "book2",
+			author: "author2",
+			year:"1992",
+			ISBN:"666-7-88-999999-1"
+		};
+		var book3={
+			title: "book3",
+			author: "author3",
+			year:"1993",
+			ISBN:"222-1-44-888888-9"
+		};
+	</script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="" onclick="goHome()" id="homeButton">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav" id="menuList">
+				<li class="nav-item">
+					<a class="nav-link" href="../loginPage/login.html" id="loginLink">Sign in</a>
+				</li>
+				<li class="nav-item">
+   					<a class="nav-link" href="" onclick="otherToHelp()" id="helpLink">Help</a>
+				</li>
+			</ul>
+		</div>  
+	</nav>
 
+	<div style="height: 100vh">
+		<div class="container h-100">
+        		<div class="jumbotron">
+        			<img src="../pictures/UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+        			<div class="text-center">
+        				<h1>Results:</h1>
+        			</div>
+        			<table class="table table-hover">
+  					<thead>
+    						<tr id = "bar">
+     							<th scope="col">Title</th>
+     							<th scope="col">Author</th>
+      							<th scope="col">Year</th>
+      							<th scope="col">ISBN</th>
+    						</tr>
+  					</thead>
+  					<tbody>
+    						<tr id="book1"></tr>
+    						<tr id="book2"></tr>
+    						<tr id="book3"></tr>
+  					</tbody>
+				</table>
+        			<div id="result"></div>
+					<button class="btn btn-dark" onclick="goBack()">Back</button>
+    				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		checkUrl();
+		searchLogin();
+		showBook();
+	</script>
 </body>
 </html>

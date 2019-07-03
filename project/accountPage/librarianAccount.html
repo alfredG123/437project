@@ -1,9 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<title>Account</title>
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+	<link rel = "stylesheet" href = "../cssFiles/page.css">
+	<script src = "../jsFiles/button.js"> </script>
+	<script src = "../jsFiles/tab.js"> </script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="../index.html?confirm=lib">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html" onClick="return logout()">Sign Out</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../helpPage/help.html?status=lib">Help</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="account.html?status=lib">Account</a>
+				</li>
+			</ul>
+		</div>  
+	</nav>
 
+	<div class="row">
+		<div class="jumbotron col-md-2" style="background-color:#fdb515; height: 100vh;">
+			<img src="../pictures/UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+			<h1>UMBC Inbox</h1>
+			<br>
+			<div class="btn-group-vertical">
+				<button class="btn btn-dark btn-block" onclick="useTab(event, 'Home')" id="defaultOpen">Home</button>
+				<button class="btn btn-dark btn-block" onclick="useTab(event, 'Book')">Control Center</button>
+				<button class="btn btn-dark btn-block" onclick="useTab(event, 'Action')">Brought Book</button>
+			</div>
+		</div>
+		<div class="jumbotron col-md-10" style="height: 100vh;">
+			<div class="input-group mb-3 tabcontent" id="Home">
+				<h1>Welcome</h1>
+				<p>Name: xxxx xxxx</p>
+				<p>Username: xxxx</p>
+				<p>Email: lib@abc.edu</p>
+				<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing changing account information at this moment.')">Manage Account</button>
+			</div>
+			<div class="input-group mb-3 tabcontent" id="Book">
+				<div class="form-group col-md-1">
+   					<select class="form-control typeSelect" name="type">
+     						<option>Title</option>
+						<option>Author</option>
+						<option>Year</option>
+						<option>ISBN</option>
+    					</select>
+				</div>
+				<div class="form-group col-md-10">
+  					<input type="text" class="form-control" placeholder="Keywords" id="libSearch">
+  				</div>
+  				<div class="form-group col-md-1">
+    					<button type="button" class="btn btn-danger btn-block" onClick="JavaScript:alert('Error: Sorry, search function is currently down.')">Search</button>
+  					<button type="button" class="btn btn-danger btn-block" onClick="clearLibSearch()">clear</button>
+				</div>
+  				<table class="table table-hover">
+  					<thead>
+    						<tr>
+     							<th scope="col">#</th>
+     							<th scope="col">Name</th>
+      							<th scope="col">Author</th>
+    						</tr>
+  					</thead>
+  					<tbody>
+    						<tr>
+      							<th scope="row">1</th>
+     							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing modifying book information at this moment.')">Modify</button>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing removing book from the system at this moment.')">Remove</button>
+      							</td>
+    						</tr>
+    						<tr>
+      							<th scope="row">2</th>
+      							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing modifying book information at this moment.')">Modify</button>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing removing book from the system at this moment.')">Remove</button>
+      							</td>
+    						</tr>
+    						<tr>
+      							<th scope="row">3</th>
+      							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing modifying book information at this moment.')">Modify</button>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing removing book from the system at this moment.')">Remove</button>
+      							</td>
+    						</tr>
+  					</tbody>
+				</table>
+				<button type="button"  class="btn btn-dark" onClick="JavaScript:alert('No new book is needed to add into the library.')">Add New Book</button>
+			</div>
+			<div class="input-group mb-3 tabcontent" id="Action">
+				<table class="table table-hover">
+  					<thead>
+    						<tr>
+     							<th scope="col">#</th>
+     							<th scope="col">Email</th>
+      							<th scope="col">Days of Overdue</th>
+    						</tr>
+  					</thead>
+  					<tbody>
+    						<tr>
+      							<th scope="row">1</th>
+     							<td>XXX</td>
+      							<td>3</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('An email is sent.')">send notification</button>
+      							</td>
+    						</tr>
+    						<tr>
+      							<th scope="row">2</th>
+      							<td>XXX</td>
+      							<td>7</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('An email is sent.')">send notification</button>
+      							</td>
+    						</tr>
+    						<tr>
+      							<th scope="row">3</th>
+      							<td>XXX</td>
+      							<td>1</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('An email is sent.')">send notification</button>
+      							</td>
+    						</tr>
+	  				</tbody>
+				</table>
+			</div>
+		</div> 
+	</div>
+
+	<script>
+		document.getElementById("defaultOpen").click();
+	</script>
 </body>
 </html>

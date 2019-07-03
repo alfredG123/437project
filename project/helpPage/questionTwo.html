@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>Register</title>
+	<title>How to check book availability?</title>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,22 +11,24 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 	<link rel = "stylesheet" href = "../cssFiles/page.css">
-	<script src = "../jsFiles/login.js"> </script>
 	<script src = "../jsFiles/button.js"> </script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="../index.html">Home</a>
+   		<a class="navbar-brand" href="../index.html?confirm=lib">Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="login.html">Sign in</a>
+					<a class="nav-link" href="../index.html" onclick="return logout()">Sign Out</a>
 				</li>
 				<li class="nav-item">
-   					<a class="nav-link" href="../helpPage/help.html">Help</a>
+   					<a class="nav-link" href="help.html?status=lib">Help</a>
+				</li>
+				<li class="nav-item">
+   					<a class="nav-link" href="../accountPage/account.html?status=lib">Account</a>
 				</li>
 			</ul>
 		</div>  
@@ -36,24 +38,33 @@
     		<div class="container h-100">
         		<div class="jumbotron">
         			<img src="../pictures/UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
-        			<h1 class="text-center">Sign up</h1>
+        			<h1 style="text-align:center;">Ticket</h1>
             			<div class="form-group">
-					<label for="email">Email address</label>
-   					<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+					<label>Subject: How to check book availability?</label>
+				</div>
+				<div class="form-group">
+					<label>Category: Technical Diffculty</label>
+				</div>
+				<div class="form-group">
+					<label>Email address: qwe@abc.edu</label>
   				</div>
- 				<div class="form-group">
-    					<label for="password">Password</label>
-    					<input type="password" class="form-control" id="password" placeholder="Password">
+				<div class="form-group">
+					<label>Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</label>
   				</div>
   				<div class="form-group">
-    					<label for="confirmPassword">Confirm password</label>
-    					<input type="password" class="form-control" id="confirmPassword" placeholder="Password">
-  				</div>		
-  				<p class="text-center">
-  					Have an account? <a href="login.html">Log in</a>
-  				</p>
-				<button type="button" onclick="checkInfo()" class="btn btn-dark btn-block"> Confirm </button>
-				<button type="button" onclick="goBack()" class="btn btn-dark btn-block"> Back </button>
+    					<label>Reply:</label>
+    					<textarea class="form-control" rows="5" id="reply"></textarea>
+  				</div>
+  				<div class="form-group">
+    					<label>Attachments</label>
+    					<form>
+ 						<div class="custom-file">
+  					 		Select files: <input type="file" name="myFile" multiple>
+  						</div>
+					</form>
+					<button type="button" onclick="checkReply()" class="btn btn-dark btn-block"> Submit </button>
+					<button type="button" onclick="goBack()" class="btn btn-dark btn-block"> Back </button>
+				</div>
 			</div>
 		</div>
 	</div>

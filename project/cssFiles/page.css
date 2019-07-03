@@ -21,3 +21,10 @@ html body{
 .hidden{
 	display:none;
 }
+
+.blocks .btn-primary 
+{
+    padding: 24px 12px;
+    margin: 0 5px;  
+    border-radius: 0;
+}

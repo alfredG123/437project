@@ -1,9 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<title>Account</title>
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	
+	<link rel = "stylesheet" href = "../cssFiles/page.css">
+	<script src = "../jsFiles/button.js"> </script>
+	<script src = "../jsFiles/tab.js"> </script>
 </head>
 <body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="../index.html?confirm=ss">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html" onClick="return logout()">Sign Out</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../helpPage/help.html?status=ss">Help</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="account.html?status=ss">Account</a>
+				</li>
+			</ul>
+		</div>  
+	</nav>
 
+	<div class="row">
+		<div class="jumbotron col-md-2" style="background-color:#fdb515; height: 100vh;">
+			<img src="../pictures/UMBC logo.png" alt="UMBC logo" style="width:100px;height:20px;">
+			<h1>UMBC Inbox</h1>
+			<br>
+			<div class="btn-group-vertical">
+				<button class="btn btn-dark btn-block" onclick="useTab(event, 'Home')" id="defaultOpen">Home</button>
+				<button class="btn btn-dark btn-block" onclick="useTab(event, 'History')">History</button>
+				<button class="btn btn-dark btn-block" onclick="useTab(event, 'Favourite')">Favourite</button>
+			</div>
+		</div>
+		<div class="jumbotron col-md-10" style="height: 100vh;">
+			<div class="input-group mb-3 tabcontent" id="Home">
+				<h1>Welcome</h1>
+				<p>Name: xxxx xxxx</p>
+				<p>Username: xxxx</p>
+				<p>Email: ss@abc.edu</p>
+				<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: Sorry, system is currently not allowing changing account information at this moment.')">Manage Account</button>
+			</div>
+			<div class="input-group mb-3 tabcontent" id="History">
+				<button type="button" class="btn btn-dark" onClick="clearHistory()">clear</button>
+  				<table class="table table-hover">
+  					<thead>
+    						<tr>
+     							<th scope="col">#</th>
+     							<th scope="col">Name</th>
+      							<th scope="col">Author</th>
+    						</tr>
+  					</thead>
+  					<tbody id="history">
+    						<tr>
+      							<th scope="row">1</th>
+     							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Adding to bookshelf is successful!')">add to favourite</button>
+      							</td>
+    						</tr>
+    						<tr>
+      							<th scope="row">2</th>
+      							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Adding to bookshelf is successful!')">add to favourite</button>
+      							</td>
+    						</tr>
+    						<tr>
+      							<th scope="row">3</th>
+      							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Adding to bookshelf is successful!')">add to favourite</button>
+      							</td>
+    						</tr>	
+  					</tbody>
+				</table>
+			</div>
+			<div class="input-group mb-3 tabcontent" id="Favourite">
+				<button type="button" class="btn btn-dark" onClick="clearFavor()">clear</button>
+  				<table class="table table-hover">
+  					<thead>
+    						<tr>
+     							<th scope="col">Name</th>
+      							<th scope="col">Author</th>
+    						</tr>
+  					</thead>
+  					<tbody id="favourite">
+    						<tr id="book1">
+     							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: The book is not available.')">Request it</button>
+								<button type="button" class="btn btn-dark" onClick="removeBook1()">Remove</button>
+      							</td>
+    						</tr>
+    						<tr  id="book2">
+      							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: The book is not available.')">Request it</button>
+      								<button type="button" class="btn btn-dark" onClick="removeBook2()">Remove</button>
+							</td>
+    						</tr>
+    						<tr  id="book3">
+      							<td>XXX</td>
+      							<td>XXX</td>
+      							<td>
+      								<button type="button" class="btn btn-dark" onClick="JavaScript:alert('Error: The book is not available.')">Request it</button>
+      								<button type="button" class="btn btn-dark" onClick="removeBook3()">Remove</button>
+							</td>
+    						</tr>	
+  					</tbody>
+				</table>
+			</div>
+		</div> 
+	</div>
+
+	<script>
+		document.getElementById("defaultOpen").click();
+	</script>
 </body>
 </html>
